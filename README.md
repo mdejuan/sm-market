@@ -1,0 +1,5 @@
+- Copy tiles-admin-marketing.xml to /WEB-INF/tiles/
+- Add tile entry to ShopApplicationConfiguration
+- Add MarketingConfiguration.class to ShopApplicationConfiguration: @Import({ CoreApplicationConfiguration.class, MarketingConfiguration.class})
+- Add entry <beans:value>classpath:bundles/marketing</beans:value>  to shopizer-servlet-context.xml
+- Add entry dependency sm-market to sm-shop pom.xml 
