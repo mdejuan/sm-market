@@ -1,0 +1,51 @@
+{"menus":[
+{
+"menu":{
+"code":"marketing", 
+"icon":"icon-info-sign",
+"url":"/admin/promotion/list.html", 
+"role":"STORE",
+"order":12,
+"menus":[
+	{"menu":{
+		"code":"promotions","url":"","role":"STORE","order":0,"menus":
+		[
+			{"menu":{
+				"code":"promotion-create","url":"/admin/promotion/create.html","role":"STORE","order":0
+			}},
+			{"menu":{
+				"code":"promotion-list","url":"/admin/promotion/list.html","role":"STORE","order":1
+			}}
+		]
+	}},
+	{"menu":{
+		"code":"vouchers","url":"","role":"STORE","order":1,"menus":
+		[
+			{"menu":{
+				"code":"voucher-create","url":"/admin/voucher/create.html","role":"STORE","order":0
+			}},
+			{"menu":{
+				"code":"voucher-list","url":"/admin/voucher/list.html","role":"STORE","order":1
+			}}
+			,
+			{"menu":{
+				"code":"voucher-customer-list","url":"/admin/voucher/customer/list.html","role":"STORE","order":2
+			}}
+		]
+	}},
+	{"menu":{
+		"code":"email","url":"","role":"STORE","order":2,"menus":
+		[
+			{"menu":{
+				"code":"email-create","url":"/admin/emailmarketing/create.html","role":"STORE","order":0
+			}},
+			{"menu":{
+				"code":"email-list","url":"/admin/emailmarketing/list.html","role":"STORE","order":1
+			}}
+		]
+	}}
+]
+}}
+]}
+
+

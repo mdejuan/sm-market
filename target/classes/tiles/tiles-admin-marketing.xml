@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>  	
+  	<definition name="admin-promotion-list" template="/layout/admin/layout.jsp">
+  		<put-attribute name="body" value="/pages/admin/marketing/promotionList.jsp" /> 
+  	</definition>
+  	
+  	<definition name="admin-promotion-details" template="/layout/admin/layout.jsp">
+  		<put-attribute name="body" value="/pages/admin/marketing/promotion.jsp" /> 
+  	</definition> 
+  	<definition name="admin-voucher-list" template="/layout/admin/layout.jsp">
+  		<put-attribute name="body" value="/pages/admin/marketing/voucherList.jsp" /> 
+  	</definition>
+  	
+  	<definition name="admin-voucher-details" template="/layout/admin/layout.jsp">
+  		<put-attribute name="body" value="/pages/admin/marketing/voucher.jsp" /> 
+  	</definition> 
+  	<definition name="admin-voucher-customer-list" template="/layout/admin/layout.jsp">
+  		<put-attribute name="body" value="/pages/admin/marketing/voucherCustomerList.jsp" /> 
+  	</definition> 
+  	<definition name="admin-email-list" template="/layout/admin/layout.jsp">
+  		<put-attribute name="body" value="/pages/admin/marketing/emailMarketingList.jsp" /> 
+  	</definition>
+  	
+  	<definition name="admin-email-details" template="/layout/admin/layout.jsp">
+  		<put-attribute name="body" value="/pages/admin/marketing/emailMarketing.jsp" /> 
+  	</definition> 	
+</tiles-definitions>
