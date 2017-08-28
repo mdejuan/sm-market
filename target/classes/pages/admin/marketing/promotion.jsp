@@ -57,6 +57,8 @@
 			$('#slotDiv').hide();
 			$('#moneyBackDiv').hide();
 			$('#couponDiv').hide();
+			$('#minMax').hide();
+			
 		} else {
 			$('#promotionType').find('option:first').val('${promotionType}');
 			
@@ -71,31 +73,43 @@
 			$('#couponDiv').hide();
 			var option = $('#promotionType').find('option:selected').val();
 			switch (option){
+				case "Order_Discount": 
+					$('#orderDiscountDiv').show();
+					$('#total_discount').show();
+					$('#minMax').show();
+					break;
 				case "Product_Discount": 
 					getProducts("p1");
 					$('#productsDiv').show();	
 					$('#orderDiscountDiv').show();
+					$('#minMax').hide();
+					$('#acumulativeId').hide();
+					$('#couponDiv').hide();
 					break;
 				case "Category_Discount": 
 					getCategories();
 					$('#categoriesDiv').show();	
 					$('#orderDiscountDiv').show();
+					$('#minMax').hide();
 					break;
 				case "Manufacturer_Discount": 
 					getManufacturers();
 					$('#manufacturersDiv').show();	
 					$('#orderDiscountDiv').show();
+					$('#minMax').hide();
 					break;
 				case "Buy_X_get_Y_Free": 
 					getProducts("p2");
 					$('#productsDiv').show();
-					$('#productsDivFree').show();					
+					$('#productsDivFree').show();	
+					
 					break;
 				case "Free_Shipping": 
 					getProducts("p1");
 					getCategories();
 					$('#productsDiv').show();
-					$('#categoriesDiv').show();					
+					$('#categoriesDiv').show();		
+					$('#minMax').show();
 					break;
 				case "Threshold": 
 					$('#thresholdDiv').show();
@@ -185,6 +199,7 @@
 			$('#slotDiv').hide();
 			$('#moneyBackDiv').hide();
 			$('#couponDiv').hide();
+			$('#minMax').hide();
 			var option = $(this).find('option:selected').val();
 			if (option != "") {
 				$('#commonPromo').show();
@@ -208,7 +223,8 @@
 			  switch (option){
 				case "Order_Discount": 
 					$('#orderDiscountDiv').show();
-					$('#total_discount').show();				
+					$('#total_discount').show();
+					$('#minMax').show();
 					break;
 				case "Category_Discount":
 					$('#orderDiscountDiv').show();
@@ -231,7 +247,8 @@
 					break;
 				case "Free_Shipping":	
 					$('#categoriesDiv').show();			
-					$('#productsDiv').show();					
+					$('#productsDiv').show();	
+					$('#minMax').show();
 					break;
 				case "Threshold":
 					$('#thresholdDiv').show();	
@@ -354,6 +371,7 @@
 				$('#orderDiscountPercentage').val("");
 				$('#total_discount').show();
 				$('#total_discount_percentage').hide();
+				$('#amount').val($('#orderTotalDiscount').val());
 			}
 
 		});
@@ -562,6 +580,7 @@
 		function isValid() {
 			if (isFValid()) {
 				$('#btnSubmit').attr('disabled', false);
+				$('#amount').val($('#orderTotalDiscount').val());
 				return true;
 			} else {
 				$('#btnSubmit').attr('disabled', true);
@@ -661,6 +680,7 @@
 					<input type="hidden" id="products2" name="products2" />
 					<input type="hidden" id="productsFree" name="productsFree" />
 					<input type="hidden" id="manufacturers" name="manufacturers" />
+					<input type="hidden" id="amount" name="amount" />
 					<div class="control-group">
 						<label><s:message code="label.promotion.type" text="Type" /></label>
 						<div class="controls">
@@ -764,64 +784,33 @@
 
 							</div>
 						</div>
-						
-						<div class="control-group" id="lastOrderDiv">
-							<label class="required"><s:message
-									code="label.promotion.customerLastOrder"
-									text="Customer Last Order" /></label>
-							<div class="controls">
 
-								<form:input cssClass="input-large" path="custLastOrder" id="custLastOrder" 
-									readonly="true" class="small" type="date"
-									data-date-format="<%=com.salesmanager.core.business.constants.Constants.DEFAULT_DATE_FORMAT%>" />
-								<script type="text/javascript">
-									$('#custLastOrder').datepicker();
-								</script>
-								<span class="help-inline"><form:errors
-										path="custLastOrder" cssClass="error" /></span>
-
+						<div id="minMax">
+							<div class="control-group" id="minQtyDiv">
+								<label class="required"><s:message
+										code="label.promotion.qtyminy" text="Min Quantity" /></label>
+								<div class="controls">
+									<form:input
+										onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+										type="text" id="qtymin" path="qtymin" />
+									<span class="help-inline"><form:errors path="qtymin"
+											cssClass="error" /></span>
+	
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="required"><s:message
+										code="label.promotion.qtymax" text="Max Quantity" /></label>
+								<div class="controls">
+									<form:input
+										onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+										type="text" id="qtymax" path="qtymax" />
+									<span class="help-inline"><form:errors path="qtymax"
+											cssClass="error" /></span>
+	
+								</div>
 							</div>
 						</div>
-
-
-
-						<div class="control-group">
-							<label class="required"><s:message
-									code="label.promotion.order" text="Order" /></label>
-							<div class="controls">
-								<form:input
-									onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
-									type="text" id="order" path="order" />
-								<span class="help-inline"><form:errors path="order"
-										cssClass="error" /></span>
-
-							</div>
-						</div> 
-						<div class="control-group" id="minQtyDiv">
-							<label class="required"><s:message
-									code="label.promotion.qtyminy" text="Min Quantity" /></label>
-							<div class="controls">
-								<form:input
-									onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
-									type="text" id="qtymin" path="qtymin" />
-								<span class="help-inline"><form:errors path="qtymin"
-										cssClass="error" /></span>
-
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="required"><s:message
-									code="label.promotion.qtymax" text="Max Quantity" /></label>
-							<div class="controls">
-								<form:input
-									onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
-									type="text" id="qtymax" path="qtymax" />
-								<span class="help-inline"><form:errors path="qtymax"
-										cssClass="error" /></span>
-
-							</div>
-						</div>
-						
 						<div class="control-group" id="couponDiv">
 							<label><s:message code="label.promotion.coupon" text="Coupon" /></label>
 							<div class="controls">
@@ -865,23 +854,6 @@
 								</div>
 	
 							</div>
-						</div>
-						<div class="control-group">
-								<label ><s:message
-										code="label.promotion.acumulative"
-										text="Is acumulative?" /></label>
-								<div class="controls">
-									<form:checkbox path="acumulative" id="acumulative"/>
-								</div>
-						</div>
-						
-						<div class="control-group">
-								<label ><s:message
-										code="label.promotion.newCustomer"
-										text="New Customers?" /></label>
-								<div class="controls">
-									<form:checkbox path="newCustomer" id="newCustomer"/>
-								</div>
 						</div>
 						
 						<div id="orderDiscountDiv">
