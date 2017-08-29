@@ -21,6 +21,8 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,7 +40,8 @@ import com.salesmanager.core.model.merchant.MerchantStore;
 
 @Entity
 @EntityListeners(value = AuditListener.class)
-@Table(name = "PROMOTION", schema=SchemaConstant.SALESMANAGER_SCHEMA)
+@Table(name = "PROMOTION", schema=SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints=
+@UniqueConstraint(columnNames = {"CODE_PROMO"}))
 public class Promotion extends SalesManagerEntity<Long, Promotion> implements Auditable{
 
 	private static final long serialVersionUID = 2145708542301246238L;
@@ -50,6 +53,9 @@ public class Promotion extends SalesManagerEntity<Long, Promotion> implements Au
 	@NotEmpty
 	@Column(name = "DESCRIPTION", nullable=false)
 	private String description;
+	@NotEmpty
+	@Column(name = "CODE_PROMO", nullable=false)
+	private String codePromo;
 	@NotEmpty
 	@Column(name = "PROMOTION_TYPE", nullable=false)
 	private String promotionType;
@@ -404,6 +410,12 @@ public class Promotion extends SalesManagerEntity<Long, Promotion> implements Au
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public String getCodePromo() {
+		return codePromo;
+	}
+	public void setCodePromo(String codePromo) {
+		this.codePromo = codePromo;
 	}
 	
 	

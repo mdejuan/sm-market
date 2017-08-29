@@ -1,32 +1,44 @@
 package com.salesmanager.business.marketing.util;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.salesmanager.core.model.catalog.product.price.ProductPrice;
+import com.salesmanager.core.model.catalog.product.price.ProductPriceDescription;
 import com.salesmanager.core.model.catalog.product.price.ProductPriceType;
 import com.salesmanager.marketing.model.Promotion;
 
 public class PromotionPriceUtil {
 	
-	public static ProductPrice resolveProductPrice(ProductPrice defaultPrice, Promotion promotion)
+	public static ProductPrice resolveProductPrice(ProductPrice basePrice, Promotion promotion)
 	{
-		defaultPrice.setDefaultPrice(false);
+		
 		ProductPrice productPrice = new ProductPrice();
 		
 		if(promotion.isDiscountPercentage())
 		{		
 			Integer discount = promotion.getOrderDiscountPercentage();
-			double amountDiscouted = (defaultPrice.getProductPriceAmount().doubleValue() * discount.doubleValue()) / 100;
-			productPrice.setProductPriceSpecialAmount(new BigDecimal(defaultPrice.getProductPriceAmount().doubleValue() - amountDiscouted));
+			double amountDiscouted = (basePrice.getProductPriceAmount().doubleValue() * discount.doubleValue()) / 100;
+			productPrice.setProductPriceSpecialAmount(new BigDecimal(basePrice.getProductPriceAmount().doubleValue() - amountDiscouted));
 		}
 		else if(!promotion.isDiscountPercentage())
 		{
-			productPrice.setProductPriceSpecialAmount(new BigDecimal(defaultPrice.getProductPriceAmount().doubleValue() - promotion.getAmount().doubleValue()));
+			productPrice.setProductPriceSpecialAmount(new BigDecimal(basePrice.getProductPriceAmount().doubleValue() - promotion.getAmount().doubleValue()));
 		}
-		productPrice.setCode("promotion");
+		Set<ProductPriceDescription> descriptions = new HashSet<ProductPriceDescription>();
+		ProductPriceDescription description = new ProductPriceDescription();
+		description.setDescription(promotion.getDescription());
+		description.setName(promotion.getPromotionType());
+		description.setTitle(promotion.getCodePromo());
+		description.setProductPrice(productPrice);
+		description.setLanguage(promotion.getMerchant().getDefaultLanguage());
+		descriptions.add(description);
+		productPrice.setDescriptions(descriptions);
+		productPrice.setCode("promo-"+promotion.getCodePromo());
 		productPrice.setDefaultPrice(true);
-		productPrice.setProductAvailability(defaultPrice.getProductAvailability());
-		productPrice.setProductPriceAmount(defaultPrice.getProductPriceAmount());
+		productPrice.setProductAvailability(basePrice.getProductAvailability());
+		productPrice.setProductPriceAmount(basePrice.getProductPriceAmount());
 		productPrice.setProductPriceType(ProductPriceType.ONE_TIME);
 		return productPrice;
 	}

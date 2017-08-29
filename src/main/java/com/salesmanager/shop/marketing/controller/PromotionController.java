@@ -242,6 +242,7 @@ public class PromotionController extends AbstractMarketingController{
 				Map entry = new HashMap();
 				entry.put("id", promotion.getId());
 				entry.put("description", promotion.getDescription());
+				entry.put("code", promotion.getCodePromo());
 				entry.put("merchant", promotion.getMerchant().getStorename());
 				entry.put("startDate", DateUtil.formatDate(promotion.getStartDate()));
 				entry.put("discount", promotion.getDiscount());

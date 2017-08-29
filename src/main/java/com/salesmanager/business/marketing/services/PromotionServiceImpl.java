@@ -74,6 +74,7 @@ public class PromotionServiceImpl extends SalesManagerEntityServiceImpl<Long, Pr
 			for (Product productPromoted : productlist) {
 				Set<ProductPrice> prices = null;
 				ProductPrice defaultPrice = null;
+				ProductPrice basePrice = null;
 				for (ProductAvailability availability : productPromoted.getAvailabilities()) {
 					if (availability.getRegion()
 							.equals(com.salesmanager.core.business.constants.Constants.ALL_REGIONS)) {
@@ -88,7 +89,15 @@ public class PromotionServiceImpl extends SalesManagerEntityServiceImpl<Long, Pr
 					}
 
 				}
-				ProductPrice productPrice = PromotionPriceUtil.resolveProductPrice(defaultPrice, promotion);
+				for (ProductPrice price : prices) {
+					if (price.getCode().equals("base")) {
+						basePrice = price;
+						break;
+					}
+
+				}
+				ProductPrice productPrice = PromotionPriceUtil.resolveProductPrice(basePrice, promotion);
+				
 				productPriceService.saveOrUpdate(productPrice);		
 				productPriceService.saveOrUpdate(defaultPrice);
 			}
@@ -110,7 +119,7 @@ public class PromotionServiceImpl extends SalesManagerEntityServiceImpl<Long, Pr
 					}
 				}
 				for (ProductPrice price : prices) {
-					if (price.isDefaultPrice() && price.getCode().equals("promotion")) {
+					if (price.isDefaultPrice() && price.getCode().startsWith("promo-")) {
 						promoPrice = price;
 						promoPrice.setDefaultPrice(false);
 					

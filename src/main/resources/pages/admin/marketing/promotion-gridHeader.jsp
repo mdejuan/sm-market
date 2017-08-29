@@ -6,6 +6,7 @@
 {title:"<s:message code="label.customer.optin.id" text="Id"/>", name:"id",canFilter:false},
 {title:"<s:message code="label.promotion.type" text="Promotion Type"/>", name:"promotionType",canFilter:true},
 {title:"<s:message code="label.promotion.description" text="Description"/>", name:"description",canFilter:false},
+{title:"<s:message code="label.promotion.code" text="Code"/>", name:"code",canFilter:false},
 {title:"<s:message code="label.promotion.startDate" text="Start Date"/>", name:"startDate",canFilter:true},
 {title:"<s:message code="label.promotion.endDate" text="End Date"/>", name:"endDate",canFilter:false},
 {title:"<s:message code="label.promotion.merchant" text="Store"/>", name: "merchant", align: "center",canFilter:false},

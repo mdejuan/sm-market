@@ -697,6 +697,17 @@
 					<div id="commonPromo">
 						<div class="control-group" >
 							<label class="required"><s:message
+									code="label.promotion.code" text="Code" /></label>
+							<div class="controls">
+								<form:input cssClass="input-large highlight" id="codePromo"
+									path="codePromo" />
+								<span class="help-inline"><form:errors path="codePromo"
+										cssClass="error" /></span>
+
+							</div>
+						</div>
+						<div class="control-group" >
+							<label class="required"><s:message
 									code="label.promotion.description" text="Description" /></label>
 							<div class="controls">
 								<form:input cssClass="input-large highlight" id="description"
