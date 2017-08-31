@@ -1,5 +1,6 @@
 /home/marcos/workspace/shop2/sm-market/src/main/java/com/salesmanager/business/marketing/repositories/EmailMarketingRepository.java
 /home/marcos/workspace/shop2/sm-market/src/main/java/com/salesmanager/business/marketing/services/PromotionServiceImpl.java
+/home/marcos/workspace/shop2/sm-market/src/main/java/com/salesmanager/business/marketing/aop/CartPromotionsInterceptor.java
 /home/marcos/workspace/shop2/sm-market/src/main/java/com/salesmanager/shop/marketing/controller/PromotionController.java
 /home/marcos/workspace/shop2/sm-market/src/main/java/com/salesmanager/business/marketing/util/PromotionPriceUtil.java
 /home/marcos/workspace/shop2/sm-market/src/main/java/com/salesmanager/shop/configuration/marketing/ConstantsMarketing.java

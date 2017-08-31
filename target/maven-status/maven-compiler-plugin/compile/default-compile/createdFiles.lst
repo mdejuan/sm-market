@@ -23,6 +23,7 @@ com/salesmanager/marketing/model/Promotion.class
 com/salesmanager/marketing/model/EmailMarketing.class
 com/salesmanager/business/marketing/services/VoucherCustomerServiceImpl.class
 com/salesmanager/shop/configuration/marketing/ConstantsMarketing$Tiles$Voucher.class
+com/salesmanager/business/marketing/aop/CartPromotionsInterceptor.class
 com/salesmanager/shop/configuration/marketing/PromotionType.class
 com/salesmanager/shop/configuration/marketing/CouponType.class
 com/salesmanager/business/marketing/util/PromotionPriceUtil.class

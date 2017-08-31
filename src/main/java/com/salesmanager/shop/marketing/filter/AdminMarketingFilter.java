@@ -34,7 +34,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AdminFilter.class);
 		request.setCharacterEncoding("UTF-8");
 		@SuppressWarnings("unchecked")
 		Map<String,Menu> menus = (Map<String,Menu>) cache.getFromCache("MENUMAP");
-		Object updated = cache.getFromCache("promoUpdatedMenu");
+		Object updated = cache.getFromCache("0promoUpdatedMenu_");
 
 		if(menus!=null && updated == null) {
 			InputStream in = null;
@@ -52,7 +52,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AdminFilter.class);
 				}
 
 				cache.putInCache(menus,"MENUMAP");
-				cache.putInCache(true, "promoUpdatedMenu");
+				cache.putInCache(true, "0promoUpdatedMenu_");
 				
 
 			} catch (JsonParseException e) {
